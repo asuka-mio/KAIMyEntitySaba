@@ -1,0 +1,20 @@
+cmake_minimum_required(VERSION 3.0.0)
+
+set(CROSS_COMPILE 0)
+
+if(CROSS_COMPILE)
+	set(CMAKE_SYSTEM_NAME Linux)
+	set(CMAKE_FIND_ROOT_PATH "/home/tarsin/android-ndk-r23/build/tools/my-toolchain")
+	set(TOOLCHAIN_DIR "/home/tarsin/android-ndk-r23/build/tools/my-toolchain")
+	set(CMAKE_CXX_COMPILER ${TOOLCHAIN_DIR}/bin/aarch64-linux-android-g++)
+	set(CMAKE_C_COMPILER   ${TOOLCHAIN_DIR}/bin/aarch64-linux-android-gcc)
+	set(CMAKE_FIND_ROOT_PATH  ${TOOLCHAIN_DIR})
+endif(CROSS_COMPILE)
+
+project(KAIMyEntitySaba VERSION 1.3.13)
+find_package (Bullet REQUIRED)
+include_directories(. ./bullet)
+file(GLOB SabaBase "./Saba/Base/*.cpp")
+file(GLOB SabaModel "./Saba/Model/MMD/*.cpp")
+add_library(KAIMyEntitySaba SHARED com_kAIS_KAIMyEntity_NativeFunc.cpp KAIMyEntitySaba.cpp ${SabaBase} ${SabaModel})
+target_link_libraries(KAIMyEntitySaba PRIVATE ${BULLET_LIBRARIES})
