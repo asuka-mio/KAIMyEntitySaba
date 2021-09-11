@@ -10,7 +10,7 @@ release里面的如果你是Windows系统就下载dll，然后放在和mods文�
 
 #Build   
 Build and Install bullet  
-Edit CMakeLists.txt according you environment
-cmake .
-cd /output
+Edit CMakeLists.txt according you environment   
+cmake .   
+cd /output   
 make
