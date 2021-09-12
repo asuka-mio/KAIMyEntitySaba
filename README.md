@@ -10,7 +10,7 @@ release里面的如果你是Windows系统就下载dll，然后放在和mods文�
 
 # Build   
 ## For Android
-Build and Install bullet with cross compile tools   
+Build and Install bullet with cross compile tools:see https://github.com/asuka-mio/bullet3   
 Edit CMakeLists.txt according you environment   
 set the CROSS_COMPILE Flag = 1 and change the path to your toolchains   
 cmake .   
