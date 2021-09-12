@@ -12,7 +12,7 @@ release里面的如果你是Windows系统就下载dll，然后放在和mods文�
 ## For Android
 Build and Install bullet with cross compile tools   
 Edit CMakeLists.txt according you environment   
-set the CROSS_COMPILE Flag = 1 and change the path to your toolchains
+set the CROSS_COMPILE Flag = 1 and change the path to your toolchains   
 cmake .   
 cd /output   
 make
