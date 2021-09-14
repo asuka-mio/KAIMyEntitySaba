@@ -8,9 +8,31 @@ release里面的如果你是Windows系统就下载dll，然后放在和mods文�
 如果你没root，那就塞进mcinabox那里下载的运行库压缩包里，和j2me-image文件夹同一级就行，然后在app里安装一遍
 其余注意事项同原版mod
 
-#Build   
-Build and Install bullet  
+# Build   
+## For Android
+Build and Install bullet with cross compile tools:see https://github.com/asuka-mio/bullet3   
 Edit CMakeLists.txt according you environment   
+set the CROSS_COMPILE Flag = 1 and change the path to your toolchains   
 cmake .   
 cd /output   
 make
+
+## For Windows
+Install cmake and mingw/cygwin   
+Build and Install bullet   
+Edit CMakeLists.txt according you environment   
+cmake .   
+cd /output   
+make  
+
+## For Linux
+Install bullet   
+Edit CMakeLists.txt according you environment   
+cmake .   
+cd /output   
+make  
+
+## Notification
+When you installed the bullet which built with cross-compile toolchains For Android    
+And you want to build this for Linux   
+YOU NEED REINSTALL bullet OR BUILD&&INSTALL without cross-compile toolchains !    
