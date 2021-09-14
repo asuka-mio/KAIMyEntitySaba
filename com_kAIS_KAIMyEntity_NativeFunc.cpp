@@ -6,7 +6,7 @@ using namespace KAIMyEntitySaba;
 
 JNIEXPORT jstring JNICALL Java_com_kAIS_KAIMyEntity_NativeFunc_GetVersion(JNIEnv* env, jobject obj)
 {
-	return env->NewStringUTF("1.1b4");
+	return env->NewStringUTF("crossPlatform-1.0.0");
 }
 
 JNIEXPORT jbyte JNICALL Java_com_kAIS_KAIMyEntity_NativeFunc_ReadByte(JNIEnv* env, jobject obj, jlong data, jlong pos)
