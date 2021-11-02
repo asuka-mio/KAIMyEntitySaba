@@ -1,15 +1,12 @@
 cmake_minimum_required(VERSION 3.0.0)
-
-set(CROSS_COMPILE 0)
-
+option(CROSS_COMPILE "Cross compile for Android" off)
+option(CROSS_COMPILE_TOOLCHAIN_DIR "Directory for cross-compile toolchain" "")
 if(CROSS_COMPILE)
 	set(CMAKE_SYSTEM_NAME Linux)
-	set(CMAKE_FIND_ROOT_PATH "/home/tarsin/android-ndk-r23/build/tools/my-toolchain")
-	set(TOOLCHAIN_DIR "/home/tarsin/android-ndk-r23/build/tools/my-toolchain")
-	set(CMAKE_CXX_COMPILER ${TOOLCHAIN_DIR}/bin/aarch64-linux-android-g++)
-	set(CMAKE_C_COMPILER   ${TOOLCHAIN_DIR}/bin/aarch64-linux-android-gcc)
-	set(CMAKE_FIND_ROOT_PATH  ${TOOLCHAIN_DIR})
-endif(CROSS_COMPILE)
+	set(CMAKE_FIND_ROOT_PATH ${CROSS_COMPILE_TOOLCHAIN_DIR})
+	set(CMAKE_CXX_COMPILER ${CROSS_COMPILE_TOOLCHAIN_DIR}/bin/aarch64-linux-android-g++)
+	set(CMAKE_C_COMPILER   ${CROSS_COMPILE_TOOLCHAIN_DIR}/bin/aarch64-linux-android-gcc)
+endif()
 
 project(KAIMyEntitySaba VERSION 1.3.13)
 find_package (Bullet REQUIRED)
