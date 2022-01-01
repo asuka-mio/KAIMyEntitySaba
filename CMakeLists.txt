@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.2)
-project(KAIMyEntitySaba VERSION 1.3.13)
+project(KAIMyEntitySaba VERSION 2.0)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 find_package (Bullet REQUIRED)
 include_directories(${BULLET_INCLUDE_DIRS})
