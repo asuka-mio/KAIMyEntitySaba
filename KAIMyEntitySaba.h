@@ -2,9 +2,9 @@
 #define _KAIMYENTITY_H_
 
 #include <memory>
-#include "Saba/Model/MMD/PMXModel.h"
-#include "Saba/Model/MMD/PMDModel.h"
-#include "Saba/Model/MMD/VMDAnimation.h"
+#include <Saba/Model/MMD/PMXModel.h>
+#include <Saba/Model/MMD/PMDModel.h>
+#include <Saba/Model/MMD/VMDAnimation.h>
 
 namespace KAIMyEntitySaba
 {
