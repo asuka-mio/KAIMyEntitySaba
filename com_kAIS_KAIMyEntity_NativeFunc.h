@@ -1,4 +1,4 @@
-#include "jni.h"
+#include <jni.h>
 
 #ifndef _Included_com_kAIS_KAIMyEntity_NativeFunc
 #define _Included_com_kAIS_KAIMyEntity_NativeFunc
