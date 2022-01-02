@@ -2,12 +2,15 @@
 #define _KAIMYENTITY_H_
 
 #include <memory>
+#include <jni.h>
 #include <Saba/Model/MMD/PMXModel.h>
 #include <Saba/Model/MMD/PMDModel.h>
 #include <Saba/Model/MMD/VMDAnimation.h>
 
+#include "OpenVRInterface.h"
 namespace KAIMyEntitySaba
 {
+	static int VRPlayerUpdatePosPerSecond = 60;
 	struct Texture
 	{
 		uint8_t *data;
@@ -22,12 +25,29 @@ namespace KAIMyEntitySaba
 		saba::VMDAnimation **vmdAnims;
 		double *animTimes;
 		double prevSabaTime;
+		bool isVRPlayer = false;  //If player use VR ,disable animation play except Custom key is down
+	};
+
+	struct VRPlayer
+	{
+		Model* playerModel;
+		bool isPlayingAnim;
+		OpenVRInterface::VRDevice* device;
+		jobject* playerJavaInst;
 	};
 
 	Model *LoadModelPMX(const char *filename, const char *dir, size_t layerCount);
 	Model *LoadModelPMD(const char *filename, const char *dir, size_t layerCount);
 	void DeleteModel(Model *model);
 	void UpdateModel(Model *model);
+
+	//VR Player statement here
+	void VRPlayerTakeControlOfModel(Model *model, VRPlayer *player);
+	void VRPlayerLeaveControlOfModel(Model *model, VRPlayer *player);
+	void VRPlayerModelUpdate(VRPlayer *player);
+	void VRPlayerPlayAnim(VRPlayer *player);
+	VRPlayer *InitializeVRPlayer(OpenVRInterface::VRDevice *device, jobject *nativePlayerInst);
+	//VR Player statement over
 
 	size_t GetVertexCount(Model *model);
 	const void *GetPoss(Model *model);	  //float * 3

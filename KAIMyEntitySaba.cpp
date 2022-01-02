@@ -98,6 +98,28 @@ void KAIMyEntitySaba::UpdateModel(Model *model)
 	model->mmdModel->Update();
 }
 
+void KAIMyEntitySaba::VRPlayerTakeControlOfModel(Model *model, VRPlayer *player)
+{
+	model->isVRPlayer = true;
+	player->playerModel = model;
+}
+
+void KAIMyEntitySaba::VRPlayerLeaveControlOfModel(Model *model, VRPlayer *player)
+{
+	model->isVRPlayer = false;
+	player->playerModel = nullptr;
+}
+
+VRPlayer *KAIMyEntitySaba::InitializeVRPlayer(OpenVRInterface::VRDevice *device, jobject *nativePlayerInst)
+{
+	VRPlayer *player = new VRPlayer;
+	player->device = device;
+	player->playerJavaInst = nativePlayerInst;
+	player->playerModel = nullptr;
+	player->isPlayingAnim = false;
+	return player;
+}
+
 size_t KAIMyEntitySaba::GetVertexCount(Model *model)
 {
 	return model->mmdModel->GetVertexCount();
