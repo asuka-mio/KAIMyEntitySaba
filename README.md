@@ -1,5 +1,6 @@
 # KAIMyEntitySaba
-A native library use saba to load MMD Model for minecraft
+A native library use saba to load MMD Model for minecraft   
+Can someone help us become "yet another VRChat"?
 ## How to build
 
 Please install CMake before the build.
