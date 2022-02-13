@@ -76,11 +76,20 @@ void KAIMyEntitySaba::DeleteModel(Model *model)
 
 void KAIMyEntitySaba::UpdateModel(Model *model)
 {
+	int maxAnim = 0;
 	double deltaTime = saba::GetTime() - model->prevSabaTime;
 	model->prevSabaTime = saba::GetTime();
 	double elapsed = deltaTime;
 	if (elapsed > PHYSICS_ELAPSED)
 		elapsed = PHYSICS_ELAPSED;
+	for (size_t i = 0; i < model->vmdAnimCount; ++i)
+	{
+		auto vmdAnim = model->vmdAnims[i];
+		if (vmdAnim != nullptr)
+		{
+			maxAnim = i;
+		}
+	}
 	model->mmdModel->BeginAnimation();
 	for (size_t i = 0; i < model->vmdAnimCount; ++i)
 	{
@@ -91,7 +100,22 @@ void KAIMyEntitySaba::UpdateModel(Model *model)
 			if (animTime * FPS > vmdAnim->GetMaxKeyTime())
 				animTime = 0.0;
 			model->animTimes[i] = animTime;
-			model->mmdModel->UpdateAllAnimation(vmdAnim, animTime * FPS, elapsed);
+
+			if (i == maxAnim)
+			{
+				model->mmdModel->UpdateAllAnimation(vmdAnim, animTime * FPS, elapsed);
+			}
+			else
+			{
+				float vmdFrame = animTime * FPS;
+				if (vmdAnim != nullptr)
+				{
+					vmdAnim->Evaluate(vmdFrame);
+				}
+				model->mmdModel->UpdateMorphAnimation();
+				model->mmdModel->UpdateNodeAnimation(false);
+			}
+
 		}
 	}
 	model->mmdModel->EndAnimation();
