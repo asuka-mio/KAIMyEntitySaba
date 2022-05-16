@@ -34,3 +34,16 @@ jobs:
           cd build
           cmake ..
           make -j2
+  build-ndk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Android SDK Tools
+        uses: android-actions/setup-android@v2
+      - name: Install NDK
+        run: |
+          echo "y" | sudo ${ANDROID_HOME}/tools/bin/sdkmanager --install "ndk;24.0.8215888" --sdk_root=${ANDROID_SDK_ROOT} &> /dev/null
+      - name: build
+        run: |
+          git submodule update --init --recursive
+          ${ANDROID_HOME}/ndk/24.0.8215888/ndk-build NDK_PROJECT_PATH=. NDK_APPLICATION_MK=./Application.mk -j8
