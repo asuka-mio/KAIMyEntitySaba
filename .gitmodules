@@ -1,3 +1,6 @@
 [submodule "saba"]
 	path = saba
 	url = https://github.com/benikabocha/saba
+[submodule "bullet3"]
+	path = bullet3
+	url = https://github.com/bulletphysics/bullet3
